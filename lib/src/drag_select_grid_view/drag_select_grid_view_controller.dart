@@ -23,5 +23,5 @@ class DragSelectGridViewController extends ValueNotifier<Selection> {
   /// Clears the grid selection.
   void clear() => value = const Selection.empty();
 
-  void fillAllItem(length) => value = Selection.fill(length);
+  //void fillAllItem(length) => value = Selection.fill(length);
 }

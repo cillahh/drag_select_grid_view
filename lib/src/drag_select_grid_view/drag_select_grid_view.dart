@@ -80,6 +80,7 @@ class DragSelectGridView extends StatefulWidget {
     this.reverse = false,
     this.primary,
     this.physics,
+    this.allSelection = false,
     this.shrinkWrap = false,
     this.padding,
     required this.gridDelegate,
@@ -127,6 +128,8 @@ class DragSelectGridView extends StatefulWidget {
   ///
   /// Defaults to false.
   final bool triggerSelectionOnTap;
+
+  final bool allSelection;
 
   /// Refer to [ScrollView.reverse].
   final bool reverse;
@@ -281,7 +284,7 @@ class DragSelectGridViewState extends State<DragSelectGridView>
                 child: widget.itemBuilder(
                   context,
                   index,
-                  selectedIndexes.contains(index),
+                  selectedIndexes.contains(index) || widget.allSelection,
                 ),
               ),
             );
