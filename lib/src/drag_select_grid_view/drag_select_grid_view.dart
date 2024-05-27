@@ -236,12 +236,13 @@ class DragSelectGridViewState extends State<DragSelectGridView>
     if (controller != null) {
       controller.addListener(_onSelectionChanged);
       _selectionManager.selectedIndexes = controller.value.selectedIndexes;
-    }
-    if (widget.allSelection) {
-      for (int i = 0; i < widget.itemCount!; i++) {
-        _selectionManager.selectedIndexes.add(i);
+      if (widget.allSelection) {
+        for (int i = 0; i < widget.itemCount!; i++) {
+          controller.value.selectedIndexes.add(i);
+        }
       }
     }
+
   }
 
   @override
