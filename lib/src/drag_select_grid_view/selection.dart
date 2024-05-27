@@ -151,7 +151,9 @@ class Selection {
   /// Creates a new [Selection] with no selected items.
   const Selection.empty() : selectedIndexes =  const {};
 
-  Selection.fill(index) : selectedIndexes =  ot[index];
+  Selection.otFill(index) : selectedIndexes =  ot[index];
+
+  Selection.ntFill(index) : selectedIndexes =  nt[index];
 
   //const Selection.fill(Set<int> length) : selectedIndexes = length;
 
