@@ -150,7 +150,7 @@ class Selection {
   /// Creates a new [Selection] with no selected items.
   const Selection.empty() : selectedIndexes =  const {};
 
-  const Selection.fill() : selectedIndexes =  const {};
+  const Selection.fill() : selectedIndexes =  const {0,1,2};
 
   //const Selection.fill(Set<int> length) : selectedIndexes = length;
 
