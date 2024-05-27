@@ -21,6 +21,9 @@ class SelectionManager {
   int get dragEndIndex => _dragEndIndex;
   var _dragEndIndex = -1;
 
+  bool get startBySelect => _startBySelect;
+  var _startBySelect = true;
+
   /// Gets the indexes that are currently selected.
   ///
   /// Indexes can be directly selected, with [_selectedIndexes] setter, and
@@ -58,9 +61,12 @@ class SelectionManager {
   /// Adds the [index] to [_selectedIndexes] and allows [updateDrag] calls.
   void startDrag(int index) {
     _dragStartIndex = _dragEndIndex = index;
-    _selectedIndexes.contains(index)
-        ? _selectedIndexes.remove(index)
-        : _selectedIndexes.add(index);
+    if (_selectedIndexes.contains(index)) {
+      _selectedIndexes.remove(index);
+      _startBySelect = false;
+    } else {
+      _selectedIndexes.add(index);
+    }
   }
 
   /// Updates the [_selectedIndexes], adding/removing one or more indexes, based
@@ -114,14 +120,18 @@ class SelectionManager {
       if (isUnselecting) {
         removeIndexesDraggedByExceptTheCurrent();
       } else {
-        _selectedIndexes.addAll(indexesDraggedBy);
+        _startBySelect
+            ? _selectedIndexes.addAll(indexesDraggedBy)
+            : _selectedIndexes.removeAll(indexesDraggedBy);
       }
     } else if (isSelectingBackward) {
       final isUnselecting = index > _dragEndIndex;
       if (isUnselecting) {
         removeIndexesDraggedByExceptTheCurrent();
       } else {
-        _selectedIndexes.addAll(indexesDraggedBy);
+        _startBySelect
+            ? _selectedIndexes.addAll(indexesDraggedBy)
+            : _selectedIndexes.removeAll(indexesDraggedBy);
       }
     } else {
       removeIndexesDraggedByExceptTheCurrent();
