@@ -243,7 +243,6 @@ class DragSelectGridViewState extends State<DragSelectGridView>
         }
       }
     }
-
   }
 
   @override
