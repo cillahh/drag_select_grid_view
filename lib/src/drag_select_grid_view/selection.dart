@@ -148,7 +148,9 @@ class Selection {
       : selectedIndexes = UnmodifiableSetView(Set.of(selectedIndexes));
 
   /// Creates a new [Selection] with no selected items.
-  const Selection.empty() : selectedIndexes = const {};
+  const Selection.empty() : selectedIndexes =  const {};
+
+  const Selection.fill() : selectedIndexes =  const {};
 
   //const Selection.fill(Set<int> length) : selectedIndexes = length;
 
@@ -162,7 +164,7 @@ class Selection {
   bool get isSelecting => amount > 0;
 
   @override
-  String toString() => 'Selection{_selectedIndexes: $selectedIndexes}';
+  String toString() => 'Selection{$selectedIndexes}';
 
   @override
   bool operator ==(Object other) =>
