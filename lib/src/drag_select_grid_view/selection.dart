@@ -150,6 +150,8 @@ class Selection {
   /// Creates a new [Selection] with no selected items.
   const Selection.empty() : selectedIndexes = const {};
 
+  const Selection.fill(Set<int> length) : selectedIndexes = length;
+
   /// Grid indexes that are selected.
   final Set<int> selectedIndexes;
 
