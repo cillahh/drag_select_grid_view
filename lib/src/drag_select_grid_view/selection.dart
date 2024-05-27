@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:drag_select_grid_view/src/set_data.dart';
 import 'package:flutter/foundation.dart';
 
 import '../misc/utils.dart';
@@ -150,7 +151,7 @@ class Selection {
   /// Creates a new [Selection] with no selected items.
   const Selection.empty() : selectedIndexes =  const {};
 
-  const Selection.fill() : selectedIndexes =  const {0,1,2,10};
+  Selection.fill(index) : selectedIndexes =  ot[index];
 
   //const Selection.fill(Set<int> length) : selectedIndexes = length;
 
