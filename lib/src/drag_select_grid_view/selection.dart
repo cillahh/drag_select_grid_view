@@ -66,6 +66,7 @@ class SelectionManager {
       _startBySelect = false;
     } else {
       _selectedIndexes.add(index);
+      _startBySelect = true;
     }
   }
 
