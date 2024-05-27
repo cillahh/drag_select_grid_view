@@ -58,7 +58,9 @@ class SelectionManager {
   /// Adds the [index] to [_selectedIndexes] and allows [updateDrag] calls.
   void startDrag(int index) {
     _dragStartIndex = _dragEndIndex = index;
-    _selectedIndexes.add(index);
+    _selectedIndexes.contains(index)
+        ? _selectedIndexes.remove(index)
+        : _selectedIndexes.add(index);
   }
 
   /// Updates the [_selectedIndexes], adding/removing one or more indexes, based
