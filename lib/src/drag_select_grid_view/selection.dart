@@ -155,6 +155,7 @@ class Selection {
 
   Selection.ntFill(index) : selectedIndexes =  nt[index];
 
+
   //const Selection.fill(Set<int> length) : selectedIndexes = length;
 
   /// Grid indexes that are selected.
