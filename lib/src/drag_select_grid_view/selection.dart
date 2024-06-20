@@ -169,7 +169,7 @@ class Selection {
   @override
   String toString() => 'Selection{$selectedIndexes}';
 
-  bool isEmpty() => selectedIndexes.isNotEmpty;
+  bool issEmpty() => selectedIndexes.isNotEmpty;
 
   @override
   bool operator ==(Object other) =>
