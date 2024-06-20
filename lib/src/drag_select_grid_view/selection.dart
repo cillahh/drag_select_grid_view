@@ -169,6 +169,8 @@ class Selection {
   @override
   String toString() => 'Selection{$selectedIndexes}';
 
+  bool isEmpty() => selectedIndexes.isNotEmpty;
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
