@@ -203,6 +203,7 @@ class DragSelectGridViewState extends State<DragSelectGridView>
   final _selectionManager = SelectionManager();
   LongPressMoveUpdateDetails? _lastMoveUpdateDetails;
   LocalHistoryEntry? _historyEntry;
+  bool doubleTap = true;
 
   DragSelectGridViewController? get _gridController => widget.gridController;
 
@@ -248,6 +249,7 @@ class DragSelectGridViewState extends State<DragSelectGridView>
   @override
   void dispose() {
     _gridController?.removeListener(_onSelectionChanged);
+    doubleTap = true;
     super.dispose();
   }
 
@@ -260,6 +262,9 @@ class DragSelectGridViewState extends State<DragSelectGridView>
       onLongPressMoveUpdate: _handleLongPressMoveUpdate,
       onLongPressEnd: _handleLongPressEnd,
       behavior: HitTestBehavior.translucent,
+      onDoubleTap: (){
+        doubleTap=false;
+      },
       child: IgnorePointer(
         ignoring: isDragging,
         child: GridView.builder(
@@ -282,7 +287,7 @@ class DragSelectGridViewState extends State<DragSelectGridView>
           clipBehavior: widget.clipBehavior,
           itemBuilder: (context, index) {
             return IgnorePointer(
-              ignoring: isSelecting || widget.triggerSelectionOnTap,
+              ignoring: (isSelecting || widget.triggerSelectionOnTap)&&doubleTap,
               child: Selectable(
                 index: index,
                 onMountElement: _elements.add,
