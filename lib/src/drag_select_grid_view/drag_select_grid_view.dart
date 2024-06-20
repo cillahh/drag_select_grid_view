@@ -260,36 +260,42 @@ class DragSelectGridViewState extends State<DragSelectGridView>
       onLongPressMoveUpdate: _handleLongPressMoveUpdate,
       onLongPressEnd: _handleLongPressEnd,
       behavior: HitTestBehavior.translucent,
-      child: GridView.builder(
-        controller: widget.scrollController,
-        reverse: widget.reverse,
-        primary: widget.primary,
-        physics: widget.physics,
-        shrinkWrap: widget.shrinkWrap,
-        padding: widget.padding,
-        gridDelegate: widget.gridDelegate,
-        itemCount: widget.itemCount,
-        addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
-        addRepaintBoundaries: widget.addRepaintBoundaries,
-        addSemanticIndexes: widget.addSemanticIndexes,
-        cacheExtent: widget.cacheExtent,
-        semanticChildCount: widget.semanticChildCount,
-        dragStartBehavior: widget.dragStartBehavior,
-        keyboardDismissBehavior: widget.keyboardDismissBehavior,
-        restorationId: widget.restorationId,
-        clipBehavior: widget.clipBehavior,
-        itemBuilder: (context, index) {
-          return Selectable(
-            index: index,
-            onMountElement: _elements.add,
-            onUnmountElement: _elements.remove,
-            child: widget.itemBuilder(
-              context,
-              index,
-              selectedIndexes.contains(index),
-            ),
-          );
-        },
+      child: IgnorePointer(
+        ignoring: isDragging,
+        child: GridView.builder(
+          controller: widget.scrollController,
+          reverse: widget.reverse,
+          primary: widget.primary,
+          physics: widget.physics,
+          shrinkWrap: widget.shrinkWrap,
+          padding: widget.padding,
+          gridDelegate: widget.gridDelegate,
+          itemCount: widget.itemCount,
+          addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
+          addRepaintBoundaries: widget.addRepaintBoundaries,
+          addSemanticIndexes: widget.addSemanticIndexes,
+          cacheExtent: widget.cacheExtent,
+          semanticChildCount: widget.semanticChildCount,
+          dragStartBehavior: widget.dragStartBehavior,
+          keyboardDismissBehavior: widget.keyboardDismissBehavior,
+          restorationId: widget.restorationId,
+          clipBehavior: widget.clipBehavior,
+          itemBuilder: (context, index) {
+            return IgnorePointer(
+              ignoring: isSelecting || widget.triggerSelectionOnTap,
+              child: Selectable(
+                index: index,
+                onMountElement: _elements.add,
+                onUnmountElement: _elements.remove,
+                child: widget.itemBuilder(
+                  context,
+                  index,
+                  selectedIndexes.contains(index),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
