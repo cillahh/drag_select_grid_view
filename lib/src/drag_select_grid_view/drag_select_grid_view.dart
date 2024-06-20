@@ -282,7 +282,7 @@ class DragSelectGridViewState extends State<DragSelectGridView>
           clipBehavior: widget.clipBehavior,
           itemBuilder: (context, index) {
             return IgnorePointer(
-              ignoring: isSelecting || widget.triggerSelectionOnTap,
+              ignoring: false,
               child: Selectable(
                 index: index,
                 onMountElement: _elements.add,
